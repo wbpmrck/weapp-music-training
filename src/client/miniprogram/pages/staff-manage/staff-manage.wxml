@@ -1,0 +1,47 @@
+<view class="page">
+    <!-- <view class="staff-list out-line-test"> -->
+    <view class="staff-list">
+
+
+    <i-panel title="{{staffs.length>0? '向左滑动曲谱来选择':'点击下方按钮新建曲谱'}}">
+
+        <view class="staff-item" wx:for="{{staffs}}"  wx:key="{{item._id}}" >
+           
+           
+            <i-swipeout i-class="i-swipeout-demo-item">
+                <view slot="content">
+                    <i-cell i-class="staff-content">
+                        
+                        <view class="staff-name">{{item.name}}</view>
+                        
+                    </i-cell>
+                </view>
+                 <view slot="button" class="list-btn-group">
+                    <view id="choose" class="list-btn">
+                        <view class="txt" data-staff-id="{{item._id}}" bind:tap="choose">选择</view>
+                    </view>
+                    <view id="cancel" class="list-btn">
+                        <view class="txt">取消</view>
+                    </view>
+                </view>
+            </i-swipeout>
+        </view>
+
+        <i-grid wx:if="{{submiting}}">
+            <i-grid-item i-class="item">
+                <i-spin fix></i-spin>
+            </i-grid-item>
+
+        </i-grid>
+        
+    </i-panel>
+    <view class="gutter-300"></view>
+
+
+    </view>
+
+    <i-message id="message" />
+    <view class="btn create-staff" bind:tap="createStaff">
+        添加
+    </view>
+</view>

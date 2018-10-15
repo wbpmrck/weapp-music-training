@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-cell-group": "/framework/wechat/ui/cell-group/index",
+    "i-cell": "/framework/wechat/ui/cell/index",
+    "i-panel": "/framework/wechat/ui/panel/index",
+    "i-icon": "/framework/wechat/ui/icon/index",
+    "i-button": "/framework/wechat/ui/button/index",
+    "i-input": "/framework/wechat/ui/input/index"
+  }
+}

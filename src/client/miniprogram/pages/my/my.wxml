@@ -1,0 +1,4 @@
+    <i-toast id="toast"></i-toast>
+    <i-message id="message"></i-message>
+<child-my wx:if="{{userInfo.role=='child'}}"></child-my>
+<teacher-my wx:if="{{userInfo.role=='teacher'}}"></teacher-my>

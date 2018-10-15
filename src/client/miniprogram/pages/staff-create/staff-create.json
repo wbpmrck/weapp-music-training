@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText":"创建曲谱",
+    "usingComponents": {
+        "i-message": "/framework/wechat/ui/message/index",
+        "i-panel": "/framework/wechat/ui/panel/index",
+        "i-icon": "/framework/wechat/ui/icon/index",
+        "i-button": "/framework/wechat/ui/button/index",
+        "i-input": "/framework/wechat/ui/input/index"
+    }
+}

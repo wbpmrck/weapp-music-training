@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view class="page full-screen" id="container-index">
+    <view class="tip">欢迎使用回课小程序...~</view>
+    <image class="icon-loading" mode="aspectFill" src="../../res/img/ico_loading@2x.png"></image>
+</view>

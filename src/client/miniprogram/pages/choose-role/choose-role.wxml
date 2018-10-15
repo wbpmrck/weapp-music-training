@@ -1,0 +1,18 @@
+
+<view id="page-choose-role">
+    <view class="title">请选择您的角色</view>
+    <view class="roles">
+        <view class="role child ">
+            <view class="role-title">孩子</view>
+            <image mode="aspectFill" src="./res/img/child.png" data-role="child"  bind:tap="check"/>
+            <image mode="aspectFill" class="check" src="./res/img/check.png" wx:if="{{checked=='child'}}" />
+        </view>
+        <view class="role parent">
+            <view class="role-title">家长</view>
+            <image mode="aspectFill" src="./res/img/dad.png" data-role="parent"  bind:tap="check"/>
+            <image mode="aspectFill" class="check" src="./res/img/check.png"  wx:if="{{checked=='parent'}}" />
+        </view>
+    </view>
+
+    <button type="primary" class="confirm" bind:tap="chooseRole">选好了</button>
+</view>

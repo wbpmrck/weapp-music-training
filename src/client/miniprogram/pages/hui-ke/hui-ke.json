@@ -1,0 +1,13 @@
+{
+    "navigationBarTitleText":"回课",
+    "usingComponents": {
+        "child-hui-ke": "./component/child-hui-ke/child-hui-ke",
+        "teacher-hui-ke": "./component/teacher-hui-ke/teacher-hui-ke",
+        "i-toast": "/framework/wechat/ui/toast/index",
+          "i-message": "/framework/wechat/ui/message/index",
+          "i-panel": "/framework/wechat/ui/panel/index",
+          "i-icon": "/framework/wechat/ui/icon/index",
+          "i-button": "/framework/wechat/ui/button/index",
+          "i-input": "/framework/wechat/ui/input/index"
+    }
+}

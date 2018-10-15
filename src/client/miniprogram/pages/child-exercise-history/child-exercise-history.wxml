@@ -1,0 +1,48 @@
+<view class="page">
+    <i-toast id="toast"></i-toast>
+    <i-message id="message"></i-message>
+
+    <view class="exercise-item" wx:for="{{exerciseList}}" wx:key="{{item._id}}" >
+        
+        <i-swipeout i-class="i-swipeout-demo-item">
+            <view slot="content">
+                <i-cell i-class="exercise-content">
+                    
+                    <view class="staff-name">{{item.staff.name}}
+
+                        <video class="video-ctl" direction="0" id="{{item._id}}_0" src="{{item.videos[0].fileId}}" bindfullscreenchange="videoScreenChange"/>
+                        <view class="play" data-video-id="{{item._id}}_0"   bind:tap="playVideo">
+                            <image src="./res/img/video.png" mode="aspectFit" style="width:100%;height:100%" />
+                        </view>
+                    </view>
+
+                    <view class="self-desc">{{item.selfDesc ? item.selfDesc : "未自评" }}</view>
+
+                    <view class="card-bottom ">
+                        <view class="comment">{{item.commentsCount}} 评论</view>
+                        <view class="teacher-comment">{{item.teacherCommentsCount}} 老师点评</view>
+                        <view class="time">{{item._updateTimeText}}</view>
+                    </view>
+                    
+                </i-cell>
+            </view>
+                <view slot="button" class="list-btn-group">
+                <view id="view-comments" class="list-btn" data-record-id="{{item._id}}" bind:tap="viewComments">
+                    <view class="txt">查看评论</view>
+                </view>
+                <view id="delete" class="list-btn" data-record-id="{{item._id}}" bind:tap="deleteRecord">
+                    <view class="txt">删除记录</view>
+                </view>
+            </view>
+        </i-swipeout>
+    </view>
+
+    <i-grid wx:if="{{submiting}}">
+        <i-grid-item i-class="item">
+            <i-spin fix></i-spin>
+        </i-grid-item>
+    </i-grid>
+        
+    <view class="gutter-300"></view>
+
+</view>

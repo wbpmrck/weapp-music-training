@@ -1,0 +1,40 @@
+
+<view class="page">
+
+    <i-toast id="toast" />
+    <i-message id="message" />
+    <view class="form">
+    
+        <view class="title-2 title ">选择曲目、填写自评，保存即可</view>
+
+        <view class="form-item">
+            <view class="title-3 form-title">练习曲目:</view>
+            <!-- <button class="staff" type="primary" bind:tap="chooseStaff">{{staff.name}}</button> -->
+            <view wx:if="{{staff.id==undefined}}" class="empty-staff"  bind:tap="chooseStaff">
+                点击选择
+            </view>
+            <view wx:if="{{staff.id!==undefined}}" class="staff">{{staff.name}}</view>
+        </view>
+        
+        <view class="form-item">
+            <view class="title-3 form-title">练习视频:</view>
+            <block wx:for="{{videos}}">
+                <video src="{{item.fileId}}" objectFit="contain" poster="{{item.thumbFileId}}" class="video"/>
+                <!-- <video src="{{item.fileUrl}}" objectFit="contain" class="video"/> -->
+            </block>
+        </view>
+        
+        
+        <view class="form-item">
+            <view class="title-3 form-title">自我评价:</view>
+            <textarea bindinput="descChange" class="self-desc" maxlength="140" placeholder="点击输入对本次练习的自我评价哦~"></textarea>
+        </view>
+        
+        <view class="form-item btn-group">
+            <view class="save-btn btn" bind:tap="submit">保存</view>
+            <view class="cancel-btn btn"  bind:tap="cancel">取消</view>
+        </view>
+    
+    </view>
+
+</view>

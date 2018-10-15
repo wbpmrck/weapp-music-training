@@ -1,0 +1,4 @@
+@import '../../../../res/style/common.wxss';
+
+.page {
+}

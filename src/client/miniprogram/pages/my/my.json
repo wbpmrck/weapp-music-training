@@ -1,0 +1,13 @@
+{
+    "navigationBarTitleText":"我的",
+    "usingComponents": {
+        "child-my": "./component/child-my/child-my",
+        "teacher-my": "./component/teacher-my/teacher-my",
+        "i-toast": "/framework/wechat/ui/toast/index",
+          "i-message": "/framework/wechat/ui/message/index",
+          "i-panel": "/framework/wechat/ui/panel/index",
+          "i-icon": "/framework/wechat/ui/icon/index",
+          "i-button": "/framework/wechat/ui/button/index",
+          "i-input": "/framework/wechat/ui/input/index"
+    }
+}

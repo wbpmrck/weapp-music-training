@@ -1,0 +1,52 @@
+@import '../../res/style/common.wxss';
+#page-choose-role{
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    margin-top: 100rpx;
+    text-align: center;
+    font-size: 60rpx;
+    
+}
+
+.roles{
+    display:flex;
+    /* flex-direction: row; */
+    align-items: center;
+    justify-content: center;
+    margin-top: 150rpx;
+}
+
+.role .role-title {
+    text-align: center;
+}
+
+.roles image {
+    width:180rpx;
+    height:180rpx;
+}
+
+
+.roles .role .check {
+    width:80rpx;
+    height:80rpx;
+}
+
+.role {
+    position: relative;
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+}
+
+.role .check {
+    position: absolute;
+    bottom: 0rpx;
+    right: 0rpx;
+}
+
+.confirm {
+    width: 50%;
+    margin-top:100rpx;
+}

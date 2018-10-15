@@ -1,0 +1,72 @@
+
+page {
+
+    width: 100%;
+    height: 100%;
+}
+.page {
+    overflow: hidden;
+    background-color: #F6FAFF;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif
+}
+/*
+用于开发的时候，标记边界
+ */
+.out-line-test{
+    border:solid 1px red;
+}
+.out-line-test-2{
+    border:solid 1px #fff222;
+}
+.full-screen {
+    /*background: url("data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABkAAD/4QMtaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NkM3NDkxNzVENjU3MTFFNzhFNDBENkIyMDk0ODczREQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NkM3NDkxNzZENjU3MTFFNzhFNDBENkIyMDk0ODczREQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2Qzc0OTE3M0Q2NTcxMUU3OEU0MEQ2QjIwOTQ4NzNERCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2Qzc0OTE3NEQ2NTcxMUU3OEU0MEQ2QjIwOTQ4NzNERCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQECAgICAgICAgICAgMDAwMDAwMDAwMBAQEBAQEBAgEBAgICAQICAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA//AABEIAA4ADgMBEQACEQEDEQH/xAB9AAADAQAAAAAAAAAAAAAAAAABBAUKAQACAwAAAAAAAAAAAAAAAAABBAMIChAAAQMCAwcFAAAAAAAAAAAAARECBRIEACEDMXGR0SIUNHQVJVW1EQACAAQCBgsAAAAAAAAAAAABAwARIQIxBGFxkTNzs0FRsSJi0hMjU9NU/9oADAMBAAIRAxEAPwDTAgCoBwxeaMytsT7zyYn1+p+VJcsMo3TuGOZZCea32W455TYHeXP1Ugd+pF57Mz8koTACVfMvYzyQBmXfndoqr7dXX2wjd3VwdeMWNvmlt7qEVPjlefbpBtLKZBwqDXF3UWtpBQrkZ0psC2yauqx0X079ngGqk9lYWzGYaXIJQ0SaZCa6n02UHuHDGshpnQ//2Q==") repeat;*/
+    min-height: 100%;
+    width: 100%;
+}
+
+.all-middle {
+    position: absolute;
+    display: inline-block;
+    top:50%;
+    left:50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+/* 基础设计 */
+
+/* 标题 */
+
+.page .title{
+    border-bottom: solid 6rpx #e44545;
+}
+
+.title-1{
+    font-size: 50rpx;
+}
+.title-2{
+    font-size: 45rpx;
+}
+.title-3{
+    font-size: 40rpx;
+}
+
+/* 按钮 */
+
+
+.btn {
+    height: 110rpx;
+    line-height: 110rpx;
+    font-size: 40rpx;
+    text-align: center;
+    border-radius: 4rpx;
+}
+
+
+/* 通用占位区域 */
+
+.gutter-300 {
+    width: 100%;
+    height: 300rpx;
+}
