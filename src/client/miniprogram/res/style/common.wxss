@@ -38,9 +38,6 @@ page {
 
 /* 标题 */
 
-.page .title{
-    border-bottom: solid 6rpx #e44545;
-}
 
 .title-1{
     font-size: 50rpx;

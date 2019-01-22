@@ -23,7 +23,7 @@
                     <view wx:if="{{mode==='normal'}}" id="teacher-detail" class="list-btn" data-open-id="{{item._openid}}" data-index="{{index}}" bind:tap="teacherDetail">
                         <view class="txt">老师详情</view>
                     </view>
-                    <view  wx:if="{{mode==='choose'}}" id="choose" class="list-btn" data-open-id="{{item.__openidid}}" bind:tap="choose">
+                    <view  wx:if="{{mode==='choose'}}" id="choose" class="list-btn" data-index="{{index}}"  data-open-id="{{item.__openidid}}" bind:tap="choose">
                         <view class="txt">选择老师</view>
                     </view>
                 </view>

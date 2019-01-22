@@ -14,7 +14,7 @@ module.exports = {
         return invoke('exercise/delete',{id })
     },
 
-    createRecord:function({staffId,selfDesc,videos}){
-        return invoke('exercise/create',{staffId,selfDesc,videos})
+    createRecord:function({staffId,selfDesc,videos,teacher_allow}){
+        return invoke('exercise/create',{staffId,selfDesc,videos,teacher_allow})
     }
 };

@@ -8,11 +8,11 @@
 }
 /* 页面大标题 */
 .page .title {
-   display: inline-block;
+    display: inline-block;
 
-   margin-top: 80rpx;
-   margin-bottom: 40rpx;
-
+    border-bottom: solid 8rpx #f7eecb;
+    margin-top: 80rpx;
+    margin-bottom: 40rpx;
 }
 /* 整表单 */
 .page .form{
@@ -38,8 +38,8 @@
 
 /* 表单内标题 */
 .form-item .form-title {
-    /* border-top: solid 34rpx #8593FF; */
-    border-bottom: solid 28rpx #8593FF;
+    /* border-bottom: solid 28rpx #8593FF; */
+    border-bottom: solid 8rpx #f7eecb;
     margin-bottom: 10rpx;
 }
 
@@ -50,8 +50,8 @@
     line-height: 100rpx;
     text-align: center;
     color:#000000;
-    border: dashed 5rpx #8593FF;
-    background-color: #1fb922;
+    border: dashed 5rpx #f7eecb;
+    background-color: #e4e1d9;
 }
 /* 曲谱为空 */
 .form-item .empty-staff {
@@ -63,6 +63,28 @@
     border: dashed 5rpx #999999;
 }
 
+/* 老师信息 */
+.form-item .teacher {
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    color:#000000;
+    border: dashed 5rpx #f7eecb;
+    background-color: #e4e1d9;
+}
+
+/* 老师为空 */
+.form-item .empty-teacher{
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    color:#000000;
+    border: dashed 5rpx #999999;
+}
+
+
 /* 自我评价 */
 
 .self-desc {
@@ -70,7 +92,8 @@
     height: 200rpx;
     text-align: left;
     color:#000000;
-    border: dashed 5rpx #8593FF;
+    /* border: dashed 5rpx #8593FF; */
+    border: dashed 5rpx #f1edd7;
 }
 
 /* 视频 */

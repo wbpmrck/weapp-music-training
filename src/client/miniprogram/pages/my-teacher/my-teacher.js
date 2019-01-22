@@ -105,9 +105,9 @@ Page({
    * 选择了某个老师返回
    * @param {string} id 
    */
-  choose:function({currentTarget:{dataset:{openId}}}){
-    console.log("choose:"+openId);
-    app.globalData.exerciseToTeacherOpenId=openId;
+  // choose:function({currentTarget:{dataset:{index}}}){
+  choose:function(event){
+    app.globalData.exerciseToTeacher=this.data.teacherList[event.currentTarget.dataset.index];
     navigateBack();
   },
   /**

@@ -12,7 +12,7 @@ const recordStatus = require('../../model/record-status');
  */
 exports.main =async (event, context) => {
 
-  let {userInfo,staffId,selfDesc,videos} = event;
+  let {userInfo,staffId,selfDesc,videos,teacher_allow} = event;
   let {cloud,request_id} = context;
   const db = cloud.database();
 
@@ -27,6 +27,7 @@ exports.main =async (event, context) => {
         status:recordStatus.INIT,
         videos:videos,
         enable:1,
+        teacher_allow:teacher_allow,
         commentsCount:0,
         teacherCommentsCount:0,
         upVote:0,

@@ -1,6 +1,7 @@
 const {formatTime, showBusy, showSuccess, showModel} = require('../../framework/wechat/util')
 const {redirectToPage,navigateToPage,reLaunchToPage,navigateBack} = require('../../framework/wechat/router')
 const {getVideoPath} = require('../../business/file-store-rule')
+var {getMyTeachers} = require('../../service/user-service');
 const regeneratorRuntime = require('../../lib/regenerator-runtime/runtime')
 const { $Message,$Toast } = require('../../framework/wechat/ui/base/index');
 const validate = require("../../framework/onelib/OneLib.Validation").targetWrapper;
@@ -19,6 +20,23 @@ Page({
 
     id:"",
     selfDesc:"",
+    teacherList:[
+      // {
+      //   _createTime:'',
+      //   _updateTime:'',
+      //   avatar:'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKyEJx6dG2dMqxmE6ibmR1emdSq0qavKmgC1hNxScpgqjlIG8CBMMugoGGfdEicSmeojibpwyAyw1qnQ/132',
+
+      //   teacher_detail:{
+      //     introduce:"王振山，小提琴教育家，中央音乐学院教授 在从事小提琴教学的同时，长期教授室内乐，任中央音乐学院室内乐教研室主任、组建了中央音乐学院室内乐团，任艺术指导；曾任中央广播交响乐团、中央歌剧院、北京交响乐团弦乐四重奏艺术指导。培训的很多优秀弦乐四重奏参加全国及国际室内乐比赛获奖，并多次代表国家出国演出。曾倡导举办了第一届全国青少年小提琴比赛。多次出任小提琴、室内乐比赛评委；多次应聘任文化部、国家交响乐团专业资格考试评委；多次率团出国比赛、演出，并应邀赴欧洲、美国访问、讲学。1996年，获“杨雪兰教育奖”。  主要著作有《小提琴高级音阶、双音教程》",
+      //     rewardIntroduce:[
+      //       'xxxx年获得合肥市优秀教师称号'
+      //     ],
+      //     level:1,
+      //     realName:'王振山',
+      //     verifyStatus:0
+      //   }
+      // }
+    ],
     staff:{
       id:undefined,
       name:"点击选择",
@@ -37,6 +55,11 @@ Page({
    */
   chooseStaff:function(){
     navigateToPage("staff-manage")
+  },
+
+  // 选择老师
+  chooseTeacher:function(){
+    navigateToPage("my-teacher",{mode:'choose'})
   },
   /**
    * 生命周期函数--监听页面加载
@@ -86,8 +109,9 @@ Page({
         selfDesc:""
       });
 
-
-      $Toast.hide();
+      console.log('准备查询用户的老师信息')
+      await this.queryMyTeacher();
+      // $Toast.hide();
       
     }
 
@@ -109,6 +133,44 @@ Page({
 
   cancel:function(){
     navigateBack();
+  },
+
+  /**
+   * 查询自己的老师
+   */
+  queryMyTeacher:async function(){
+
+    let self =  this;
+
+    console.log('app.globalData.exerciseToTeacher=')
+    console.log(app.globalData.exerciseToTeacher)
+
+    if(app.globalData.exerciseToTeacher===undefined){
+      $Toast({
+        content: '获取回课信息...',
+        type: 'loading',
+        duration: 0
+      });
+      try{
+
+        let data = await getMyTeachers();
+        console.log('getMyTeachers=')
+        console.log(data)
+
+        $Toast.hide();
+        self.setData({
+          teacherList: data.result.data
+        })
+      }catch(e){
+
+        $Toast.hide();
+        $Message({
+          content: '出错:'+JSON.stringify(e),
+          duration: 5,
+          type: 'error'
+        });
+      }
+    }
   },
   /**
    * 提交练习记录
@@ -159,11 +221,14 @@ Page({
           $Toast.hide();
       
           // 2.保存记录到数据库
-          let createResult = await createRecord({
+          let r = {
             staffId:self.data.staff.id,
             selfDesc:self.data.selfDesc,
-            videos:self.data.videos
-          });
+            videos:self.data.videos,
+            teacher_allow:{}
+          };
+          r.teacher_allow[self.data.teacherList[0]._openid] = 1;
+          let createResult = await createRecord(r);
 
           console.log(`结果:`)
           console.log(createResult);
@@ -225,6 +290,13 @@ Page({
         pictureIds:["",""]
       }, // 这里是查询出的曲谱信息
     });
+
+    // 设置用户选择的老师
+    if(app.globalData.exerciseToTeacher){
+      self.setData({
+        teacherList:[app.globalData.exerciseToTeacher]
+      });
+    }
   },
 
   /**

@@ -5,7 +5,7 @@
     <i-message id="message" />
     <view class="form">
     
-        <view class="title-2 title ">选择曲目、填写自评，保存即可</view>
+        <view class="title-2 title ">请选择曲目、老师、填写自评</view>
 
         <view class="form-item">
             <view class="title-3 form-title">练习曲目:</view>
@@ -13,8 +13,19 @@
             <view wx:if="{{staff.id==undefined}}" class="empty-staff"  bind:tap="chooseStaff">
                 点击选择
             </view>
-            <view wx:if="{{staff.id!==undefined}}" class="staff">{{staff.name}}</view>
+            <view wx:if="{{staff.id!==undefined}}" class="staff" bind:tap="chooseStaff">{{staff.name}}</view>
         </view>
+
+
+        <view class="form-item">
+            <view class="title-3 form-title">指导老师:</view>
+            <view wx:if="{{teacherList.length>1}}" class="empty-teacher"  bind:tap="chooseTeacher">
+                点击选择
+            </view>
+            <view wx:if="{{teacherList.length===1}}" class="teacher" bind:tap="chooseTeacher">{{teacherList[0].teacher_detail.realName}}</view>
+        </view>
+
+        
         
         <view class="form-item">
             <view class="title-3 form-title">练习视频:</view>
