@@ -1,0 +1,41 @@
+<view class="page">
+    <i-toast id="toast"></i-toast>
+    <i-message id="message"></i-message>
+
+
+    <view class="comment-item" wx:for="{{comments}}" wx:key="{{item._id}}" >
+        
+       <view class="avatar">
+           <image src="{{item.userInfo.avatar}}"   mode="aspectFill"/>
+       </view>
+       <view class="content">
+           <view class="wrapper">
+               <view class="name {{item.userInfo.role}}">{{item.userInfo.nickName}}</view>
+                <view class="date">{{item._updateTimeText}}</view>
+           </view>
+        
+        <view class="comment" data-comment-index="{{index}}"  bind:tap="responseToComment">{{item.contentString}}</view>
+       </view>
+
+    </view>
+
+    <view class="form">
+        <input  placeholder="{{commentToResponse?'回复:'+commentToResponse.userInfo.nickName:'输入评论内容...'}}" bind:blur="commentChange" value="{{commentToSend}}"/>
+        <view class="submit-btn" bind:tap="submitComment" wx:if="{{commentToSend.length>0}}">评论</view>
+        <!-- <i-input  autofocus placeholder="输入评论内容" bind:change="change"/> -->
+        <!-- <i-button bind:click="submitComment" type="success" i-class="circle" loading="{{submitingComment}}" size="small">发送</i-button> -->
+    </view>
+
+    <i-grid wx:if="{{submiting}}">
+        <i-grid-item i-class="item">
+            <i-spin fix></i-spin>
+        </i-grid-item>
+    </i-grid>
+        
+
+    <view class="info"  wx:if="{{noMoreComment}}">已经没有更多内容</view>
+
+
+    <view class="gutter-300"></view>
+
+</view>

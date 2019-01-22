@@ -8,7 +8,10 @@
     "pages/staff-manage/staff-manage",
     "pages/choose-role/choose-role",
     "pages/my/my",
-    "pages/child-exercise-history/child-exercise-history"
+    "pages/my-teacher/my-teacher",
+    "pages/child-exercise-history/child-exercise-history",
+    "pages/child-view-comments/child-view-comments",
+    "pages/teacher-detail/teacher-detail"
   ],
   "tabBar": {
     "list": [

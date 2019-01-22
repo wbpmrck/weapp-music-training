@@ -1,0 +1,27 @@
+<view class="page">
+    <i-toast id="toast"></i-toast>
+    <i-message id="message"></i-message>
+
+
+    <view class="title">{{teacher.teacher_detail.realName}}</view>
+
+    <view class="introduce-bar">老师简介</view>
+
+    <view class="introduce">{{teacher.teacher_detail.introduce}}</view>
+
+
+    <view class="reward-bar">获奖经历</view>
+
+    <view class="reward" wx:for="{{teacher.teacher_detail.rewardIntroduce}}" wx:key="{{index}}">
+    {{item}}
+    </view>
+
+    <i-grid wx:if="{{submiting}}">
+        <i-grid-item i-class="item">
+            <i-spin fix></i-spin>
+        </i-grid-item>
+    </i-grid>
+        
+    <view class="gutter-300"></view>
+
+</view>

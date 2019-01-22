@@ -12,7 +12,8 @@ const role = require('../../model/role');
  */
 exports.main =async (event, context) => {
 
-  let {userInfo,role} = event;
+  // userDetail:{nickName,city,avatarUrl,country,gender}
+  let {userInfo,role,userDetail} = event;
   let {cloud,request_id} = context;
   const db = cloud.database();
 
@@ -21,6 +22,13 @@ exports.main =async (event, context) => {
       data: {
         _openid:userInfo.openId,
         role: role,
+        avatar: userDetail.avatarUrl,
+        nickName: userDetail.nickName,
+        city: userDetail.city,
+        country: userDetail.country,
+        gender: userDetail.gender,
+        language: userDetail.language,
+        province: userDetail.province,
         _createTime: new Date(),
         _updateTime: new Date()
       }

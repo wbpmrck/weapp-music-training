@@ -13,13 +13,15 @@ cloud.init()
  */
 exports.main = async (event, context) => {
 
-    let {userInfo,_base} = event;
+    let {userInfo,_base,...other} = event;
     let {request_id} = context;
 
     //注入cloud操作sdk
     context.cloud = cloud;
 
     console.log(`request:[${request_id}] begin: serviceName=[${_base.serviceName}]`)
+    console.log(`request params:`)
+    console.log(other)
 
     try{
 

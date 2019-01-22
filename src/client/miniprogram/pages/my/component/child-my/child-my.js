@@ -52,7 +52,7 @@ Component({
       * 跳转到我的老师页面
       */
     childTeacherInfo:function(){
-      this.inDev();
+      navigateToPage("my-teacher",{mode:"normal"}); //mode=choose则表示，老师列表页面仅仅支持选择功能。 normal模式显示的是查看详情功能
     },
     /**
      * 我的账户

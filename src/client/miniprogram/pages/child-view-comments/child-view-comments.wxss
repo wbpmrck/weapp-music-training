@@ -1,0 +1,127 @@
+@import '../../res/style/common.wxss';
+
+
+.page {
+    position: relative;
+    height:auto;
+    background-color: #fff;
+    /* overflow-y: auto; */
+}
+
+/* 评论 条目 */
+.comment-item {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-bottom: solid 2rpx #F6F6F6;
+    padding-left: 25rpx;
+    padding-right: 25rpx;
+    padding-bottom: 15rpx;
+    padding-top: 15rpx;
+}
+
+/* 头像框 */
+.avatar {
+    box-sizing: border-box;
+    width:60rpx;
+    height:60rpx;
+}
+.avatar image{
+    border-radius: 50%;
+    width:60rpx;
+    height:60rpx;
+}
+
+/* 评论-内容 */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 40rpx;
+    min-height: 100rpx;
+    flex:1;
+    /* width: 550rpx; */
+}
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+/* 评论-姓名 */
+.name {
+    display: inline-block;
+    font-size:32rpx;
+}
+.name.teacher {
+    color:#D35400;
+}
+/* 评论-日期 */
+.date {
+    display: inline-block;
+    font-size:22rpx;
+    color:#8499B5;
+}
+
+
+.comment {
+    font-size:28rpx;
+    background-color:#efefef;
+    color:#353535;
+}
+
+/* 评论输入区域 */
+
+.form {
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:30rpx;
+    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+    border-top: 8rpx solid #EBEBEB;
+    padding: 22rpx 20rpx;
+    background: #FFFFFF;
+}
+
+/* 定制i-view的grid item */
+.page .item {
+    border-right: none;
+    border-bottom: none;
+}
+
+/* 没有更多信息提示 */
+.info {
+    text-align: center;
+    color:#8590A6;
+    line-height: 140rpx;
+    font-size: 20rpx;
+}
+
+/* 输入框 */
+
+.page input{
+    display: inline-block;
+    width:500rpx;
+    border-bottom:solid 1rpx #efefee;
+}
+
+/* 圆形按钮 */
+.page .submit-btn{
+    display: inline-block;
+    border-radius:10rpx;
+
+    padding: 5rpx;
+    text-align: center;
+    background-color:#28B463;
+    color:#fff;
+    width:100rpx;
+    height:50rpx;
+    line-height:50rpx;
+}

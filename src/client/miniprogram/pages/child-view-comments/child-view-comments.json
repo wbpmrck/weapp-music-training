@@ -1,0 +1,17 @@
+{
+    "navigationBarTitleText":"评论查看",
+    "usingComponents": {
+        "i-grid": "/framework/wechat/ui/grid/index",
+        "i-grid-item": "/framework/wechat/ui/grid-item/index",
+        "i-swipeout": "/framework/wechat/ui/swipeout/index",
+        "i-cell-group": "/framework/wechat/ui/cell-group/index",
+        "i-cell": "/framework/wechat/ui/cell/index",
+        "i-spin": "/framework/wechat/ui/spin/index",
+        "i-message": "/framework/wechat/ui/message/index",
+        "i-toast": "/framework/wechat/ui/toast/index",
+        "i-panel": "/framework/wechat/ui/panel/index",
+        "i-icon": "/framework/wechat/ui/icon/index",
+        "i-button": "/framework/wechat/ui/button/index",
+        "i-input": "/framework/wechat/ui/input/index"
+    }
+}

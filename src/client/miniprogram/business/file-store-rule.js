@@ -30,7 +30,7 @@ const getVideoPath= function(openId,fid,videoExt,thumbExt){
 
 const getStaffImagePath= function(openId,fid,ext){
 
-    var date = format(new Date(),'yyyy-MM-dd');
+    var date = formatDate(new Date(),'yyyy-MM-dd');
 
     var fid = (+ new Date() );
     var filename =  fid+'.'+ext;

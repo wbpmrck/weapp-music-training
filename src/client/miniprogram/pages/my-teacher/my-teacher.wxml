@@ -1,0 +1,41 @@
+<view class="page">
+    <i-toast id="toast"></i-toast>
+    <i-message id="message"></i-message>
+
+    <view class="teacher-item" wx:for="{{teacherList}}" wx:key="{{item._id}}" >
+        
+        <i-swipeout i-class="i-swipeout-demo-item">
+            <view slot="content">
+                <i-cell>
+                    
+                    <view class="teacher-content">
+
+                        <view class="avatar">
+                            <image src="{{item.avatar}}" mode="aspectFit" style="width:100%;height:100%" />
+                        </view>
+
+                        <view class="real-name">{{item.teacher_detail.realName }}</view>
+                    </view>
+                    
+                </i-cell>
+            </view>
+                <view slot="button" class="list-btn-group">
+                    <view wx:if="{{mode==='normal'}}" id="teacher-detail" class="list-btn" data-open-id="{{item._openid}}" data-index="{{index}}" bind:tap="teacherDetail">
+                        <view class="txt">老师详情</view>
+                    </view>
+                    <view  wx:if="{{mode==='choose'}}" id="choose" class="list-btn" data-open-id="{{item.__openidid}}" bind:tap="choose">
+                        <view class="txt">选择老师</view>
+                    </view>
+                </view>
+        </i-swipeout>
+    </view>
+
+    <i-grid wx:if="{{submiting}}">
+        <i-grid-item i-class="item">
+            <i-spin fix></i-spin>
+        </i-grid-item>
+    </i-grid>
+        
+    <view class="gutter-300"></view>
+
+</view>

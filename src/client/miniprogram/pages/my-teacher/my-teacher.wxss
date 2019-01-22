@@ -1,0 +1,54 @@
+@import '../../res/style/common.wxss';
+
+.page {
+    position: relative;
+    height:auto;
+    /* overflow-y: auto; */
+}
+
+
+/* 老师信息展示 */
+
+.teacher-content {
+    display: flex;
+    align-items: center;
+}
+.avatar {
+    display: inline-block;
+    width:100rpx;
+    height:100rpx;
+}
+.real-name {
+    display: inline-block;
+    font-size:36rpx;
+    font-weight: bold;
+
+    margin-left: 50rpx;
+}
+
+
+
+/* 菜单项 */
+.list-btn-group{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    color:#fff;
+    font-size:26rpx;
+}
+.list-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+#teacher-detail {
+    background-color: #19be6b;
+}
+#choose {
+    background-color: #19be6b;
+}

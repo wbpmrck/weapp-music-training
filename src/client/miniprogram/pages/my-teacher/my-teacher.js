@@ -1,7 +1,7 @@
 const {redirectToPage,navigateToPage,navigateBack} = require('../../framework/wechat/router');
 const {formatDate} = require('../../framework/util/time');
 const {getStaffImagePath} = require('../../business/file-store-rule');
-var {queryRecord,deleteRecord} = require('../../service/exercise-service');
+var {getMyTeachers} = require('../../service/user-service');
 const regeneratorRuntime = require('../../lib/regenerator-runtime/runtime');
 const { $Message,$Toast } = require('../../framework/wechat/ui/base/index');
 const { pageCondition } = require('../../framework/dao/queryHelper');
@@ -16,24 +16,22 @@ Page({
    */
   data: {
     submiting:false,
+    mode:'normal',
     currentPlayId:"",
-    exerciseList:[
+    teacherList:[
       // {
       //   _createTime:'',
       //   _updateTime:'',
-      //   downVote:0,
-      //   upVote:0,
-      //   enable:1,
-      //   commentsCount:135,
-      //   teacherCommentsCount:4,
-      //   selfDesc:'',
-      //   status:0,
-      //   staff:{
-      //     _id:123,
-      //     name:"贝多芬",
-      //     pictures:[
-      //       'cloud://huike-dev-4090b9.6875-huike-dev-4090b9/image/staff/oTSgl0fcrEy4Kg1UBeNWB3478gEk/2018-10-11/1539221186422.jpg'
-      //     ]
+      //   avatar:'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKyEJx6dG2dMqxmE6ibmR1emdSq0qavKmgC1hNxScpgqjlIG8CBMMugoGGfdEicSmeojibpwyAyw1qnQ/132',
+
+      //   teacher_detail:{
+      //     introduce:"王振山，小提琴教育家，中央音乐学院教授 在从事小提琴教学的同时，长期教授室内乐，任中央音乐学院室内乐教研室主任、组建了中央音乐学院室内乐团，任艺术指导；曾任中央广播交响乐团、中央歌剧院、北京交响乐团弦乐四重奏艺术指导。培训的很多优秀弦乐四重奏参加全国及国际室内乐比赛获奖，并多次代表国家出国演出。曾倡导举办了第一届全国青少年小提琴比赛。多次出任小提琴、室内乐比赛评委；多次应聘任文化部、国家交响乐团专业资格考试评委；多次率团出国比赛、演出，并应邀赴欧洲、美国访问、讲学。1996年，获“杨雪兰教育奖”。  主要著作有《小提琴高级音阶、双音教程》",
+      //     rewardIntroduce:[
+      //       'xxxx年获得合肥市优秀教师称号'
+      //     ],
+      //     level:1,
+      //     realName:'王振山',
+      //     verifyStatus:0
       //   }
       // }
     ]
@@ -48,37 +46,9 @@ Page({
     lastVideo:undefined
   },
 
-  videoScreenChange:function({detail:{fullScreen, direction}}){
-    console.log('videoScreenChange,fullScreen='+fullScreen)
-      //如果从全屏模式退回，则停止当前视频
-      if(!fullScreen){
-        this._state.lastVideo.stop();
-      }
-  },
-  /**
-   * 播放当前曲谱的视频
-   */
-  playVideo: function(event){
-    console.log('playVideo')
-    console.log(event);
-
-    let self = this;
-    if(self._state.lastVideo){
-      self._state.lastVideo.stop();
-    }
-    let videoContext = wx.createVideoContext(event.currentTarget.dataset.videoId);
-    videoContext.requestFullScreen({
-      direction:0
-    });
-    videoContext.play();
-    self._state.lastVideo = videoContext;
-    self.setData({
-      currentPlayId:event.currentTarget.dataset.videoId
-    })
-  },
 
 
-  queryExercise:async function(){
+  queryTeacher:async function(){
 
     let self =  this;
 
@@ -90,7 +60,7 @@ Page({
     self.setData({submiting:true});
     try{
 
-      let data = await queryRecord({pager:self._state.pager});
+      let data = await getMyTeachers({pager:self._state.pager});
       console.log('data=')
       console.log(data)
 
@@ -107,7 +77,7 @@ Page({
 
       self.setData({
         submiting:false,
-        exerciseList: self.data.exerciseList.concat(data.result.data)
+        teacherList: self.data.teacherList.concat(data.result.data)
       })
     }catch(e){
 
@@ -121,45 +91,35 @@ Page({
   },
 
   /**
-   * 查看评论
+   * 查看老师详情
    * @param {} event 
    */
-  viewComments:function(event){
-    console.log("viewComments")
-    console.log(event)
-    navigateToPage("child-view-comments",{exerciseId:event.currentTarget.dataset.recordId})
+  teacherDetail:function(event){
+    console.log("teacherDetail,choose  teacher:");
+    let data = this.data.teacherList[event.currentTarget.dataset.index];
+    console.log(data);
+    navigateToPage("teacher-detail",{id:event.currentTarget.dataset.openId,teacher:JSON.stringify(data)});
   },
 
   /**
-   * 把指定id的列表项从列表中移除
+   * 选择了某个老师返回
    * @param {string} id 
    */
-  removeItem:function(id){
-    let data = this.data.exerciseList;
-    for(var i = data.length-1;i>=0;i--){
-      if(data[i]._id === id){
-        data.splice(i,1);
-      }
-    }
-    this.setData({
-      exerciseList:data
-    })
-  },
-  deleteRecord:async function(event){
-    console.log("deleteRecord")
-    console.log(event)
-
-    let data  = await deleteRecord({id:event.currentTarget.dataset.recordId});
-    console.log(data);
-    if(data && data.result.code ==='0000'){
-      this.removeItem(event.currentTarget.dataset.recordId);
-    }
+  choose:function({currentTarget:{dataset:{openId}}}){
+    console.log("choose:"+openId);
+    app.globalData.exerciseToTeacherOpenId=openId;
+    navigateBack();
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.queryExercise();
+    console.log("my teacher"+" onLoad");
+    console.log(options);
+    this.setData({
+      mode: options.mode
+    });
+    this.queryTeacher();
   },
 
   /**
@@ -173,10 +133,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let self = this;
     setTimeout(function(){
       $Message({
-        content: '向左滑动可以查看评论',
-        duration: 1.5
+        content: '向左滑动可以'+ (self.data.mode==="normal"?'查看详情':'选择老师'),
+        duration: 1
       });
     },1000)
   },
@@ -213,7 +174,7 @@ Page({
    */
   onReachBottom: function () {
     console.log('history reach bottom')
-    this.queryExercise();
+    this.queryTeacher();
   },
 
   /**

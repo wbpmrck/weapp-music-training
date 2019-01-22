@@ -13,6 +13,7 @@ App({
 
   globalData:{
     userInfo:undefined, // 登录用户信息
+    exerciseToTeacherOpenId:undefined, // 提交回课记录的时候，选择的当前能够看到此练习记录的老师的id
     staffLastChoosed:undefined , //保存用户上一次选择的曲谱信息
   }
 })

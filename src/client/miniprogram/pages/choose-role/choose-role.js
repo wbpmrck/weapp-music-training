@@ -19,16 +19,24 @@ Page({
       checked:side
     })
   },
+
+  onGotUserInfo: function(e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.userInfo)
+    console.log(e.detail.rawData)
+
+    this.chooseRole(e.detail.userInfo);
+  },
   /**
    * 用户选择了角色
    */
-  chooseRole:function(){
+  chooseRole:function(userInfo){
 
     if(this.data.checked!=='child'){
 
       util.showModel('温馨提示','当前版本只能选择学生')
     }else{
-      userRegist(this.data.checked)
+      userRegist({role:this.data.checked,userDetail:userInfo})
       .then((res)=>{
         console.log('userRegist 结果：'+JSON.stringify(res));
   
