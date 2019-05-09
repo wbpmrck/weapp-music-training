@@ -1,0 +1,18 @@
+<view class="page">
+
+    <view class="wrapper all-middle">
+
+        <view class="avatar">
+            <image src="{{teacherAvatar}}"  mode="aspectFill"/>
+        </view>
+        <view class="desc">
+        {{teacherName}}老师邀请你加入“天天回课”，成为TA的学生
+        </view>
+        <button type="primary"  open-type="getUserInfo"  bindgetuserinfo="accept">接受邀请</button>
+        <button type="default" bind:tap="cancel">放弃</button>
+
+    </view>
+
+    
+    <i-toast id="toast" />
+</view>

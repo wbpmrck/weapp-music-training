@@ -11,7 +11,10 @@
     "pages/my-teacher/my-teacher",
     "pages/child-exercise-history/child-exercise-history",
     "pages/child-view-comments/child-view-comments",
-    "pages/teacher-detail/teacher-detail"
+    "pages/teacher-detail/teacher-detail",
+    "pages/teacher-detail-edit/teacher-detail-edit",
+    "pages/teacher-invite/teacher-invite",
+    "pages/invite-landing/invite-landing"
   ],
   "tabBar": {
     "list": [
@@ -30,6 +33,7 @@
     ]
   },
   "window": {
+    "enablePullDownRefresh":true,
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",

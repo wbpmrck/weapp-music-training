@@ -1,1 +1,142 @@
-/* pages/hui-ke/component/child-hui-ke/child-hui-ke.wxss */
+@import '../../../../res/style/common.wxss';
+
+
+
+.page {
+    position: relative;
+    height:auto;
+    background-color: #fff;
+    /* overflow-y: auto; */
+}
+
+.wrapper {
+    /* position: absolute; */
+    /* left:0; */
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1rpx #19be6b;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 20rpx 30rpx 20rpx 30rpx;
+}
+
+.left .avatar {
+    width:100rpx;
+    height:100rpx;
+    border-radius: 50%;
+}
+.left .nick-name {
+    font-size:30rpx;
+    color:#020202;
+}
+
+.right{
+    display: inline-block;
+    flex: 1;
+
+    box-sizing: border-box;
+    padding: 20rpx 30rpx 20rpx 30rpx;
+}
+
+/* 菜单项 */
+.list-btn-group{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    color:#fff;
+    font-size:26rpx;
+}
+.list-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+.view-comments {
+    background-color: #19be6b;
+}
+
+.view-comments .txt {
+    font-size:36rpx;
+}
+/* .delete {
+    background-color: #e7292e;
+} */
+
+/* 曲谱名称 */
+.staff-name {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    font-size:36rpx;
+    line-height:36rpx;
+    height:36rpx;
+}
+/* 播放按钮 */
+.play {
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    right:-90rpx;
+    width:50rpx;
+    height:50rpx;
+}
+
+.video-ctl{
+    width: 0;
+    height: 0;
+}
+
+/* 自我评价 */
+.self-desc {
+    padding: 10rpx;
+    margin: 20rpx 0 50rpx 0;
+    max-height: 150rpx;
+    font-size:32rpx;
+    word-wrap: break-word;
+    white-space: pre-line;
+
+    background-color: #e9e9e9;
+}
+
+/* 评论数 */
+.comment {
+    color : #00b26a;
+    font-size:30rpx;
+}
+
+/* 老师评论数 */
+.teacher-comment {
+    margin-left: 30rpx;
+    color : #007dcb;
+    font-size:30rpx;
+}
+
+/* 日期 */
+.time {
+    position: absolute;
+    right : 0;
+    top :50%;
+    transform: translateY(-50%);
+    font-size:30rpx;
+    color:#4bc2c5;
+    
+}
+.card-bottom {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin-top: 15rpx;
+}

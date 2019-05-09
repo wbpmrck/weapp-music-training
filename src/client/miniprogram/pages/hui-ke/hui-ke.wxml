@@ -2,4 +2,4 @@
     <i-toast id="toast"></i-toast>
     <i-message id="message"></i-message>
 <child-hui-ke wx:if="{{userInfo.role=='child'}}"></child-hui-ke>
-<teacher-hui-ke wx:if="{{userInfo.role=='teacher'}}"></teacher-hui-ke>
+<teacher-hui-ke wx:if="{{userInfo.role=='teacher'}}" reach-bottom-count="{{reachBottomCount}}" pull-down-count="{{pullDownCount}}"></teacher-hui-ke>

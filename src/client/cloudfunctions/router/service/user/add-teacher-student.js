@@ -6,56 +6,51 @@ const ROLE = require('../../model/role');
 
 
 /**
- * 获取用户信息
+ * 添加学生和老师的关系
+ * 
  * @param {*} event :{role}
  * @param {*} context 
  */
 exports.main =async (event, context) => {
 
-  // userDetail:{nickName,city,avatarUrl,country,gender}
-  let {userInfo,role,userDetail} = event;
+  let {userInfo,studentOpenId,teacherOpenId} = event;
   let {cloud,request_id} = context;
   const db = cloud.database();
 
   let dataToCreate ={
-    _openid:userInfo.openId,
-    role: role,
-    avatar: userDetail.avatarUrl,
-    nickName: userDetail.nickName,
-    city: userDetail.city,
-    country: userDetail.country,
-    gender: userDetail.gender,
-    language: userDetail.language,
-    province: userDetail.province,
+    student_open_id: studentOpenId,
+    teacher_open_id: teacherOpenId,
     _createTime: new Date(),
     _updateTime: new Date()
   };
-  if(role===ROLE.TEACHER){
-    dataToCreate.teacher_detail={
-      introduce:'',
-      level:0,
-      realName:'',
-      rewardIntroduce:[],
-      imageIntroduce:[],
-      videoIntroduce:[],
-      certification:[],
-      verifyStatus:1, //TODO:这里默认已经通过审核。以后可以考虑老师采用注册审核制
-    }
-  }
+  
   try{
-    let registed = await db.collection('users').add({
+
+
+    //先查看当前是否已经存在这个师生关系
+    let relation =await db.collection('user_relation').where({
+      student_open_id: studentOpenId,
+      teacher_open_id: teacherOpenId
+    }).get();
+
+    console.log(`relation =`);
+    console.log(relation);
+
+    if(relation && relation.total>0){
+      return resp.success({ reqId:request_id,data: undefined})
+    }else{
+
+    }
+
+    let added = await db.collection('user_relation').add({
       data:dataToCreate
     });
 
-    if(registed._id){
-      let data = await db.collection('users').doc(registed._id).get();
-
-      console.log(`resited data:`+JSON.stringify(data.data));
-
-      return resp.success({ reqId:request_id,data: data.data})
+    if(added._id){
+      return resp.success({ reqId:request_id,data: added})
     }else{
       return resp.failed({
-        code: resp.codes.REGIST_FAIL,
+        code: resp.codes.CREATE_FAIL,
         desc: e.toString()
       });
     }

@@ -32,10 +32,10 @@ Page({
    */
   chooseRole:function(userInfo){
 
-    if(this.data.checked!=='child'){
+    // if(this.data.checked!=='child'){
 
-      util.showModel('温馨提示','当前版本只能选择学生')
-    }else{
+    //   util.showModel('温馨提示','当前版本只能选择学生')
+    // }else{
       userRegist({role:this.data.checked,userDetail:userInfo})
       .then((res)=>{
         console.log('userRegist 结果：'+JSON.stringify(res));
@@ -46,15 +46,12 @@ Page({
           url: '/pages/hui-ke/hui-ke'
         })
   
-    })
-    .catch((err)=>{
-      console.error(err);
-        util.showModel('登录失败', err)
-    })
-    }
-
-    
-
+      })
+      .catch((err)=>{
+        console.error(err);
+          util.showModel('登录失败', err)
+      })
+    // }
   },
   /**
    * 生命周期函数--监听页面加载

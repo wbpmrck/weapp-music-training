@@ -1,4 +1,5 @@
-// miniprogram/pages/teacher-detail/teacher-detail.js
+const {redirectToPage,navigateToPage,navigateBack} = require('../../framework/wechat/router');
+const app = getApp();
 Page({
 
   /**
@@ -6,6 +7,7 @@ Page({
    */
   data: {
     submiting:false,
+    userInfo:{},
     teacher:{}  //老师详细信息（从前一个页面传入）
   },
 
@@ -18,8 +20,12 @@ Page({
 
     //保存要展示的老师信息
     this.setData({
-      teacher:teacher
+        teacher:teacher,
+        userInfo:app.globalData.userInfo
     });
+  },
+  goEdit:function(){
+    redirectToPage("teacher-detail-edit",{mode:'update'});
   },
 
   /**
@@ -33,7 +39,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

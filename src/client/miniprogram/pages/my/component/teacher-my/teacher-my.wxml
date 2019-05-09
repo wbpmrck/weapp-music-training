@@ -1,2 +1,13 @@
-<!--pages/my/component/teacher-my/teacher-my.wxml-->
-<text>pages/my/component/teacher-my/teacher-my.wxml</text>
+<view class="page">
+
+    <i-cell-group>
+        <i-cell title="个人信息" is-link bind:click="teacherDetail"></i-cell>
+        <i-cell title="邀请学生" is-link bind:click="invite"></i-cell>
+    </i-cell-group>
+
+
+    <i-modal visible="{{ showTip }}" bind:ok="goCreateDetail" bind:cancel="cancel">
+        <view>首次使用需要设置个人信息，点确定继续</view>
+    </i-modal>
+
+</view>

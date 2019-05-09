@@ -1,0 +1,29 @@
+@import '../../res/style/common.wxss';
+
+.page {
+}
+
+/* 个人简介 */
+.page .introduce{
+    flex:1;
+    line-height:1.6;
+    padding:4px 0;
+    height:350rpx;
+    font-size:14px;
+    margin: 7px 15px;
+
+}
+
+.add {
+    position: relative;
+    width:100rpx;
+    height:100rpx;
+    margin: 7px 15px;
+    border:dashed 4rpx #808080;
+}
+.add .icon-add{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translateX(-50%) translateY(-50%)
+}

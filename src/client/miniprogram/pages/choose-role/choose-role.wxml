@@ -10,7 +10,7 @@
         <view class="role parent">
             <view class="role-title">老师</view>
             <image mode="aspectFill" src="./res/img/dad.png" data-role="teacher"  bind:tap="check"/>
-            <image mode="aspectFill" class="check" src="./res/img/check.png"  wx:if="{{checked=='parent'}}" />
+            <image mode="aspectFill" class="check" src="./res/img/check.png"  wx:if="{{checked=='teacher'}}" />
         </view>
     </view>
 

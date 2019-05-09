@@ -16,6 +16,11 @@
     {{item}}
     </view>
 
+    <view class="edit">
+            <i-button bind:click="goEdit" type="primary">修改信息</i-button>
+    </view>
+
+
     <i-grid wx:if="{{submiting}}">
         <i-grid-item i-class="item">
             <i-spin fix></i-spin>

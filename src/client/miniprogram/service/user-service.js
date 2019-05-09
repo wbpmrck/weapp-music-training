@@ -1,6 +1,5 @@
 
 const {invoke} = require('./cloud-invoker');
-const db = wx.cloud.database();
 module.exports = {
     /**
      * 注册接口：
@@ -27,6 +26,13 @@ module.exports = {
 
     getUserInfo:function(){
         return invoke('user/get-me')
+    },
+    addTeacherStudent:function({studentOpenId,teacherOpenId}){
+        return invoke('user/add-teacher-student',{studentOpenId,teacherOpenId})
+    },
+
+    updateTeacherDetail:function({realName,introduce,rewardIntroduce}){
+        return invoke('user/update-teacher-detail',{realName,introduce,rewardIntroduce})
     },
 
     getMyTeachers:function(pager){

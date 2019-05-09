@@ -1,7 +1,8 @@
 {
-  "component": true,
+  "navigationBarTitleText":"邀请",
   "usingComponents": {
     "i-cell-group": "/framework/wechat/ui/cell-group/index",
+    "i-message": "/framework/wechat/ui/message/index",
     "i-cell": "/framework/wechat/ui/cell/index",
     "i-panel": "/framework/wechat/ui/panel/index",
     "i-icon": "/framework/wechat/ui/icon/index",

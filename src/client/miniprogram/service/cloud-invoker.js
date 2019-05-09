@@ -18,7 +18,7 @@ let invoke=function(serviceName,data){
             resolve(res)
         })
         .catch((err)=>{
-            console.error(`[云函数] [${serviceName}] 调用失败,requestId=[${res.result.reqId}]`, err)
+            console.error(`[云函数] [${serviceName}] 调用失败,`, err)
             reject(err)
         })
       })

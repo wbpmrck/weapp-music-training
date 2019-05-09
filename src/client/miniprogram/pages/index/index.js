@@ -2,6 +2,7 @@
 var util = require('../../framework/wechat/util')
 var {getUserInfo} = require('../../service/user-service')
 const {redirectToPage,navigateToPage,switchToTab} = require('../../framework/wechat/router')
+const regeneratorRuntime = require('../../lib/regenerator-runtime/runtime');
 const app = getApp();
 
 Page({
@@ -9,20 +10,19 @@ Page({
         userInfo: {},
     },
 
-    onLoad:function(){
+    onLoad:async function(){
         let self=this;
+        console.log('index onload');
         wx.getSystemInfo({
             success:function(res){
                 console.log(`系统信息:`+JSON.stringify(res))
             }
-        })
-        getUserInfo()
-        .then((res)=>{
-            console.log('getUserInfo 结果：'+JSON.stringify(res))
-            app.globalData.userInfo = res.result.data;
+        });
 
-            //如果用户不存在，则进入选择角色页面
-            if(app.globalData.userInfo===undefined){
+        try{
+            await app.refreshUserInfo();
+             //如果用户不存在，则进入选择角色页面
+             if(app.globalData.userInfo===undefined){
                 redirectToPage("choose-role")
                 // wx.redirectTo({
                 //     url: "/pages/choose-role/choose-role"
@@ -39,10 +39,8 @@ Page({
                     // })
                     switchToTab("hui-ke")
             }
-
-        })
-        .catch((err)=>{
+        }catch(err){
             util.showModel('登录失败', err)
-        })
+        }
     }
 })

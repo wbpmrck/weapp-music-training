@@ -8,9 +8,10 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"appid": "wx615fab173f626152",
+	"appid": "wx6efd3e54be765d14",
 	"projectname": "music-training",
 	"libVersion": "2.3.0",
+	"compileType": "miniprogram",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -28,12 +29,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "invite-enter",
+					"pathName": "pages/invite-landing/invite-landing",
+					"query": "tName=123&tId=oCQfI5QS1LSJZbRhVajDDwRPoKyc&avatar=https%3A%2F%2Fwx.qlogo.cn%2Fmmopen%2Fvi_32%2FQ0j4TwGTfTISspIyjOW2E57mhOvX562Aa26mJxoXJXoGBXjwyWPh2C3csvGQuiaM3xLkVwlUrnBgfmZR2ibibkBRg%2F132",
+					"scene": null
 				}
 			]
 		}

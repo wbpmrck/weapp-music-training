@@ -1,0 +1,10 @@
+<view class="page">
+    <view class="step">
+    1.点击下面的按钮分享到微信群里。
+    </view>
+    <view class="step">
+    2.学生点击分享卡片进入“天天回课”,就自动成为您的学生了。
+    </view>
+    
+    <button open-type="share" type="primary">发出邀请</button>
+</view>

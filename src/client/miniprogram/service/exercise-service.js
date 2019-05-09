@@ -10,6 +10,9 @@ module.exports = {
     queryRecord:function({id,pager}){
         return invoke('exercise/query',{condition:{id,pager} })
     },
+    queryTeacherOwnRecord:function({id,pager}){
+        return invoke('exercise/query-teacher-own',{condition:{id,pager} })
+    },
     deleteRecord:function({id}){
         return invoke('exercise/delete',{id })
     },

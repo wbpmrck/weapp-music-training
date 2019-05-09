@@ -1,0 +1,45 @@
+<view class="page">
+
+    <i-panel title="真实姓名">
+        <i-input   value="{{ realName }}" placeholder="请输入您的真实姓名，方便学生了解您" data-field-id="realName" bind:change="change" maxlength="20" />
+    </i-panel>
+
+
+    <i-panel title="个人简介">
+        <textarea  value="{{ introduce }}" class="introduce"  data-field-id="introduce"  bindinput="change" type="textarea" placeholder="请输入个人简介(最多400字)" maxlength="400"/>
+        <!-- <i-input value="{{ introduce }}" type="textarea" placeholder="请输入个人简介(最多400字)" maxlength="400" /> -->
+    </i-panel>
+        
+
+    <i-panel title="{{'获奖信息'+'('+rewardIntroduce.length+')'}}">
+    
+        <!-- <i-input wx:for="{{rewardIntroduce}}"  data-field-id="{{'rewardIntroduce['+index+'].value'}}"   bind:change="change" value="{{ item.value }}" type="textarea" placeholder="请输入获奖信息(最多80字)" maxlength="80" /> -->
+        <i-input wx:for="{{rewardIntroduce}}"  data-field-id="{{'rewardIntroduce['+index+']'}}"   bind:change="change" value="{{ item }}" type="textarea" placeholder="请输入获奖信息(最多80字)" maxlength="80" />
+        <view class="add">
+            <view class="icon-add" bind:tap="addReward">
+                <i-icon type="add" size="28" color="#80848f" />
+            </view>
+        </view>
+    </i-panel>
+        
+
+    <!-- <i-panel title="曲谱图片">
+
+        <view class="staff-image" wx:for="{{pictures}}">
+            <image class="image" mode="aspectFit" src="{{item}}"></image>
+        </view>
+
+        <view class="staff-image add"  bind:tap="addImage" wx:if="{{pictures.length < maxPicture}}">
+            <view class="icon-add">
+                <i-icon type="add" size="28" color="#80848f" />
+            </view>
+        </view>
+    </i-panel> -->
+
+    <i-panel title=" ">
+        <i-button bind:click="submitTap" type="primary" loading="{{submiting}}">确认提交</i-button>
+    </i-panel>
+
+    <i-message id="message" />
+
+</view>

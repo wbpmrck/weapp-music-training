@@ -38,6 +38,10 @@
     margin-bottom:50rpx;
 }
 
+.edit {
+    margin-top: 100rpx;
+}
+
 .reward {
     font-size:30rpx;
     font-weight: 100;

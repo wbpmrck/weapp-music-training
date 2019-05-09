@@ -1,1 +1,4 @@
-/* pages/my/component/teacher-my/teacher-my.wxss */
+@import '../../../../res/style/common.wxss';
+
+.page {
+}

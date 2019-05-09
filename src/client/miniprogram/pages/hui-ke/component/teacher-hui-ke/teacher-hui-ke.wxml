@@ -1,2 +1,47 @@
-<!--pages/hui-ke/component/child-hui-ke/teacher-hui-ke.wxml-->
-<text>pages/hui-ke/component/child-hui-ke/teacher-hui-ke.wxml</text>
+<view class="page">
+    <i-toast id="toast"></i-toast>
+    <i-message id="message"></i-message>
+
+    <view class="exercise-item" wx:for="{{exerciseList}}" wx:key="{{item._id}}" >
+        
+                <view class="wrapper">
+
+                    <view class="left"  data-record-id="{{item._id}}" bind:tap="viewComments">
+                        <image class="avatar" src="{{item.userInfo.avatar}}"  mode="aspectFill"/>
+
+                        <view class="nick-name">{{item.userInfo.nickName}}</view>
+                    </view>
+                    
+                    <view class="right">
+
+                        <view class="staff-name" >{{item.staff.name}}
+
+                            <video class="video-ctl" direction="0" id="{{item._id}}_0" src="{{item.videos[0].fileId}}" bindfullscreenchange="videoScreenChange"/>
+                            <view class="play" data-video-id="{{item._id}}_0"   bind:tap="playVideo">
+                                <image src="./res/img/video.png" mode="aspectFit" style="width:100%;height:100%" />
+                            </view>
+                        </view>
+
+                        <view class="self-desc"  data-record-id="{{item._id}}" bind:tap="viewComments">{{item.selfDesc ? item.selfDesc : "未自评" }}</view>
+
+                        <view class="card-bottom "  data-record-id="{{item._id}}" bind:tap="viewComments">
+                            <view class="comment">{{item.commentsCount}} 评论</view>
+                            <view class="teacher-comment">{{item.teacherCommentsCount}} 老师点评</view>
+                            <view class="time">{{item._updateTimeText}}</view>
+                        </view>
+                    </view>
+                </view>
+       <!-- <view class="view-comments list-btn" data-record-id="{{item._id}}" bind:tap="viewComments">
+                    <view class="txt">点评</view>
+                </view> -->
+    </view>
+
+    <i-grid wx:if="{{submiting}}">
+        <i-grid-item i-class="item">
+            <i-spin fix></i-spin>
+        </i-grid-item>
+    </i-grid>
+        
+    <view class="gutter-300"></view>
+
+</view>
