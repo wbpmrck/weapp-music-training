@@ -1,26 +1,46 @@
-const {formatTime, showBusy, showSuccess, showModel} = require('../../framework/wechat/util')
-const {redirectToPage,navigateToPage,reLaunchToPage,navigateBack} = require('../../framework/wechat/router')
-const {getVideoPath} = require('../../business/file-store-rule')
-var {getMyTeachers} = require('../../service/user-service');
+const {
+  formatTime,
+  showBusy,
+  showSuccess,
+  showModel
+} = require('../../framework/wechat/util')
+const {
+  redirectToPage,
+  navigateToPage,
+  reLaunchToPage,
+  navigateBack
+} = require('../../framework/wechat/router')
+const {
+  getVideoPath
+} = require('../../business/file-store-rule')
+var {
+  getMyTeachers
+} = require('../../service/user-service');
 const regeneratorRuntime = require('../../lib/regenerator-runtime/runtime')
-const { $Message,$Toast } = require('../../framework/wechat/ui/base/index');
+const {
+  $Message,
+  $Toast
+} = require('../../framework/wechat/ui/base/index');
 const validate = require("../../framework/onelib/OneLib.Validation").targetWrapper;
-var {createRecord} = require('../../service/exercise-service')
+var {
+  createRecord
+} = require('../../service/exercise-service')
 const app = getApp();
 Page({
 
   //页面私有状态
-  _state:{
-    submiting:false
+  _state: {
+    submiting: false
   },
   /**
    * 页面的初始数据
    */
   data: {
+    submitConfirm: false, //是否正在确认提交
 
-    id:"",
-    selfDesc:"",
-    teacherList:[
+    id: "",
+    selfDesc: "",
+    teacherList: [
       // {
       //   _createTime:'',
       //   _updateTime:'',
@@ -37,12 +57,12 @@ Page({
       //   }
       // }
     ],
-    staff:{
-      id:undefined,
-      name:"点击选择",
-      pictureIds:["",""]
+    staff: {
+      id: undefined,
+      name: "点击选择",
+      pictureIds: ["", ""]
     },
-    videos:[
+    videos: [
       // {
       //   fileId:"cloud://huike-dev-4090b9.6875-huike-dev-4090b9/video/huike/oTSgl0fcrEy4Kg1UBeNWB3478gEk/2018-09-30/1538293312334.mp4",
       //   thumbFileId:"cloud://huike-dev-4090b9.6875-huike-dev-4090b9/video/huike/oTSgl0fcrEy4Kg1UBeNWB3478gEk/2018-09-30/1538293312334.jpg"
@@ -53,13 +73,15 @@ Page({
   /**
    * 选择曲谱
    */
-  chooseStaff:function(){
+  chooseStaff: function () {
     navigateToPage("staff-manage")
   },
 
   // 选择老师
-  chooseTeacher:function(){
-    navigateToPage("my-teacher",{mode:'choose'})
+  chooseTeacher: function () {
+    navigateToPage("my-teacher", {
+      mode: 'choose'
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -69,50 +91,52 @@ Page({
 
     var self = this;
     //通过页面参数传递临时视频文件id、缩略图id
-    let {fileId,thumbFileId,mode} = options;
+    let {
+      fileId,
+      thumbFileId,
+      mode
+    } = options;
 
     fileId = decodeURIComponent(fileId);
     console.log(`exercise edit onload,mode=[${mode}],fileId=[${fileId}]`);
 
     //如果是新增练习记录
-    if(mode=='create'){
+    if (mode == 'create') {
 
-    //   //根据云文件id获取可访问的http链接
+      //   //根据云文件id获取可访问的http链接
 
-    //   $Toast({
-    //     content: '准备视频中...',
-    //     type: 'loading',
-    //     duration: 0
-    // });
+      //   $Toast({
+      //     content: '准备视频中...',
+      //     type: 'loading',
+      //     duration: 0
+      // });
 
-    //   let fileAddress = await wx.cloud.getTempFileURL({
-    //     fileList: [fileId]
-    //   });
+      //   let fileAddress = await wx.cloud.getTempFileURL({
+      //     fileList: [fileId]
+      //   });
 
-    //   console.log(`获得地址:`)
-    //   console.log(fileAddress.fileList)
+      //   console.log(`获得地址:`)
+      //   console.log(fileAddress.fileList)
 
       self.setData({
-        id:"",
-        videos:[
-          {
-            fileId,
-            // fileUrl:fileAddress.fileList[0].tempFileURL,
-            thumbFileId,
-          }
-        ],
-        staff:app.globalData.staffLastChoosed||{
-          id:undefined,
-          name:"点击选择",
-          pictureIds:["",""]
-        }, 
-        selfDesc:""
+        id: "",
+        videos: [{
+          fileId,
+          // fileUrl:fileAddress.fileList[0].tempFileURL,
+          thumbFileId,
+        }],
+        staff: app.globalData.staffLastChoosed || {
+          id: undefined,
+          name: "点击选择",
+          pictureIds: ["", ""]
+        },
+        selfDesc: ""
       });
 
       console.log('准备查询用户的老师信息')
       await this.queryMyTeacher();
       // $Toast.hide();
-      
+
     }
 
   },
@@ -122,36 +146,36 @@ Page({
    * 用户自我评价修改
    * @param {*} event 
    */
-  descChange:function(event){
+  descChange: function (event) {
 
     console.log('descChange');
     console.log(event);
     this.setData({
-      selfDesc:event.detail.value
+      selfDesc: event.detail.value
     });
   },
 
-  cancel:function(){
+  cancel: function () {
     navigateBack();
   },
 
   /**
    * 查询自己的老师
    */
-  queryMyTeacher:async function(){
+  queryMyTeacher: async function () {
 
-    let self =  this;
+    let self = this;
 
     console.log('app.globalData.exerciseToTeacher=')
     console.log(app.globalData.exerciseToTeacher)
 
-    if(app.globalData.exerciseToTeacher===undefined){
+    if (app.globalData.exerciseToTeacher === undefined) {
       $Toast({
         content: '获取回课信息...',
         type: 'loading',
         duration: 0
       });
-      try{
+      try {
 
         let data = await getMyTeachers();
         console.log('getMyTeachers=')
@@ -161,104 +185,118 @@ Page({
         self.setData({
           teacherList: data.result.data
         })
-      }catch(e){
+      } catch (e) {
 
         $Toast.hide();
         $Message({
-          content: '出错:'+JSON.stringify(e),
+          content: '出错:' + JSON.stringify(e),
           duration: 5,
           type: 'error'
         });
       }
     }
   },
+
+  submitClick: async function () {
+    this.setData({
+      submitConfirm: true
+    })
+  },
+  submitCancel: async function () {
+    this.setData({
+      submitConfirm: false
+    })
+  },
   /**
    * 提交练习记录
    */
-  submit:async function(){
+  submit: async function () {
 
+    this.setData({
+      submitConfirm: false
+    })
     let self = this;
     console.log(`准备提交:[${this._state.submiting}]`)
-    if(this._state.submiting){
+    if (this._state.submiting) {
       return;
     }
 
     this._state.submiting = true;
 
     // 参数检查
-    const validateResult = await validate(this.data.staff.id, '请选择练习的曲谱').notNull().notEmptyStr()
-    // .and(this.data.selfDesc, '请填写练习自我评价').notNull().notEmptyStr()
-    .and(this.data.videos, '没有选择练习视频').lengthBetween(1,'*')
-    .run();
+    const validateResult = await validate(this.data.staff.id, '请填写练习的曲谱').notNull().notEmptyStr()
+      // .and(this.data.selfDesc, '请填写练习自我评价').notNull().notEmptyStr()
+      .and(this.data.videos, '没有选择练习视频').lengthBetween(1, '*')
+      .run();
 
     // 如果验证通过
     if (validateResult.pass) {
 
-        // 1.上传视频
-        $Toast({
-          content: '正在上传练习记录',
-          type: 'loading',
-          duration: 0
+      // 1.上传视频
+      $Toast({
+        content: '正在上传练习记录',
+        type: 'loading',
+        duration: 0
+      });
+
+      try {
+
+        let videoTmp = this.data.videos[0].fileId
+        let uploadPath = getVideoPath(app.globalData.userInfo._openid, +new Date(), videoTmp.split('.').pop())
+
+        console.log(`uploadPath:` + JSON.stringify(uploadPath));
+
+        let result = await wx.cloud.uploadFile({
+          cloudPath: uploadPath.videoPath,
+          filePath: videoTmp,
         });
 
-        try{
+        console.log(`上传结果:`)
+        console.log(result);
 
-          let videoTmp = this.data.videos[0].fileId
-          let uploadPath = getVideoPath(app.globalData.userInfo._openid,+new Date(),videoTmp.split('.').pop())
-                  
-          console.log(`uploadPath:`+JSON.stringify(uploadPath));
-      
-          let result = await wx.cloud.uploadFile({
-              cloudPath: uploadPath.videoPath,
-              filePath: videoTmp,
-          });
-      
-          console.log(`上传结果:`)
-          console.log(result);
+        self.data.videos[0].fileId = result.fileID;
+        // 视频文件上传成功，跳转到回课记录编辑页面
+        $Toast.hide();
 
-          self.data.videos[0].fileId = result.fileID;
-          // 视频文件上传成功，跳转到回课记录编辑页面
-          $Toast.hide();
-      
-          // 2.保存记录到数据库
-          let r = {
-            staffId:self.data.staff.id,
-            selfDesc:self.data.selfDesc,
-            videos:self.data.videos,
-            teacher_allow:{}
-          };
-          r.teacher_allow[self.data.teacherList[0]._openid] = 1;
-          let createResult = await createRecord(r);
+        // 2.保存记录到数据库
+        let r = {
+          staffId: self.data.staff.id,
+          selfDesc: self.data.selfDesc,
+          videos: self.data.videos,
+          teacher_allow: {}
+        };
+        r.teacher_allow[self.data.teacherList[0]._openid] = 1;
+        let createResult = await createRecord(r);
 
-          console.log(`结果:`)
-          console.log(createResult);
+        console.log(`结果:`)
+        console.log(createResult);
 
 
 
-          
-          $Message({
-            content: '练习记录创建成功',
-            duration: 3,
-            type: 'success'
-          });
-          // 3.返回
-          setTimeout(function(){
-            self._state.submiting = false;
-            // navigateBack();
-            reLaunchToPage("my");
-          },3000)
 
-        }catch(e){
-          console.error(e);
-          $Toast.hide();
-          this._state.submiting = false;
-          $Message({
-            content: '系统出错，请稍后再试',
-            duration: 3,
-            type: 'error'
-          });
-        }
-    }else{
+        $Message({
+          content: '练习记录创建成功',
+          duration: 3,
+          type: 'success'
+        });
+        // 3.返回
+        setTimeout(function () {
+          self._state.submiting = false;
+          // navigateBack();
+          reLaunchToPage("my");
+        }, 3000)
+
+      } catch (e) {
+        console.error(e);
+        $Toast.hide();
+        this._state.submiting = false;
+        $Message({
+          content: '系统出错，请稍后再试',
+          duration: 3,
+          type: 'error'
+        });
+      }
+    } else {
       this._state.submiting = false;
       $Message({
         content: `${validateResult.desc}`,
@@ -279,22 +317,22 @@ Page({
    */
   onShow: function (option) {
 
-    console.log(`exercise edit onShow , option=`+JSON.stringify(option));
+    console.log(`exercise edit onShow , option=` + JSON.stringify(option));
     const self = this;
-    console.log('用户选择的曲谱:'+JSON.stringify(app.globalData.staffLastChoosed));
+    console.log('用户选择的曲谱:' + JSON.stringify(app.globalData.staffLastChoosed));
 
     self.setData({
-      staff:app.globalData.staffLastChoosed||{
-        id:undefined,
-        name:"点击选择",
-        pictureIds:["",""]
+      staff: app.globalData.staffLastChoosed || {
+        id: undefined,
+        name: "点击选择",
+        pictureIds: ["", ""]
       }, // 这里是查询出的曲谱信息
     });
 
     // 设置用户选择的老师
-    if(app.globalData.exerciseToTeacher){
+    if (app.globalData.exerciseToTeacher) {
       self.setData({
-        teacherList:[app.globalData.exerciseToTeacher]
+        teacherList: [app.globalData.exerciseToTeacher]
       });
     }
   },

@@ -1,51 +1,44 @@
-
 <view class="page">
-
     <i-toast id="toast" />
     <i-message id="message" />
     <view class="form">
-    
-        <view class="title-2 title ">请选择曲目、老师、填写自评</view>
-
+        <view class="title-2 title ">请填写曲目、老师、填写自评</view>
         <view class="form-item">
             <view class="title-3 form-title">练习曲目:</view>
             <!-- <button class="staff" type="primary" bind:tap="chooseStaff">{{staff.name}}</button> -->
-            <view wx:if="{{staff.id==undefined}}" class="empty-staff"  bind:tap="chooseStaff">
+            <view wx:if="{{staff.id==undefined}}" class="empty-staff" bind:tap="chooseStaff">
                 点击选择
             </view>
-            <view wx:if="{{staff.id!==undefined}}" class="staff" bind:tap="chooseStaff">{{staff.name}}</view>
+            <view wx:if="{{staff.id!==undefined}}" class="staff" bind:tap="chooseStaff">
+                {{staff.name}}
+            </view>
         </view>
-
-
         <view class="form-item">
             <view class="title-3 form-title">指导老师:</view>
-            <view wx:if="{{teacherList.length>1}}" class="empty-teacher"  bind:tap="chooseTeacher">
+            <view wx:if="{{teacherList.length>1}}" class="empty-teacher" bind:tap="chooseTeacher">
                 点击选择
             </view>
-            <view wx:if="{{teacherList.length===1}}" class="teacher" bind:tap="chooseTeacher">{{teacherList[0].teacher_detail.realName}}</view>
+            <view wx:if="{{teacherList.length===1}}" class="teacher" bind:tap="chooseTeacher">
+                {{teacherList[0].teacher_detail.realName}}
+            </view>
         </view>
-
-        
-        
         <view class="form-item">
             <view class="title-3 form-title">练习视频:</view>
             <block wx:for="{{videos}}">
-                <video src="{{item.fileId}}" objectFit="contain" poster="{{item.thumbFileId}}" class="video"/>
+                <video src="{{item.fileId}}" objectFit="contain" poster="{{item.thumbFileId}}" class="video" />
                 <!-- <video src="{{item.fileUrl}}" objectFit="contain" class="video"/> -->
             </block>
         </view>
-        
-        
         <view class="form-item">
             <view class="title-3 form-title">自我评价:</view>
-            <textarea bindinput="descChange" class="self-desc" maxlength="140" placeholder="点击输入对本次练习的自我评价哦~"></textarea>
+            <textarea hidden="{{submitConfirm}}" bindinput="descChange" class="self-desc" maxlength="140" placeholder="点击输入对本次练习的自我评价哦~"></textarea>
         </view>
-        
         <view class="form-item btn-group">
-            <view class="save-btn btn" bind:tap="submit">保存</view>
-            <view class="cancel-btn btn"  bind:tap="cancel">取消</view>
+            <view class="save-btn btn" bind:tap="submitClick">提交</view>
+            <view class="cancel-btn btn" bind:tap="cancel">取消</view>
         </view>
-    
     </view>
-
+    <i-modal title="将要提交回课信息" visible="{{ submitConfirm }}" bind:ok="submit" bind:cancel="submitCancel">
+        <view>确定吗？</view>
+    </i-modal>
 </view>
