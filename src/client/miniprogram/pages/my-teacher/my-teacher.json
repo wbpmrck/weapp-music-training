@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText":"我的老师",
+    "navigationBarTitleText": "老师荣誉",
     "usingComponents": {
         "i-grid": "/framework/wechat/ui/grid/index",
         "i-grid-item": "/framework/wechat/ui/grid-item/index",
