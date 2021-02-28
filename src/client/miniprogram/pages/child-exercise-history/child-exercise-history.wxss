@@ -2,20 +2,21 @@
 
 .page {
     position: relative;
-    height:auto;
+    height: auto;
     /* overflow-y: auto; */
 }
 
 
 
 /* 菜单项 */
-.list-btn-group{
+.list-btn-group {
     display: flex;
     flex-direction: row;
     height: 100%;
-    color:#fff;
-    font-size:26rpx;
+    color: #fff;
+    font-size: 26rpx;
 }
+
 .list-btn {
     display: flex;
     flex-direction: column;
@@ -26,9 +27,11 @@
     text-align: center;
     vertical-align: middle;
 }
+
 #view-comments {
     background-color: #19be6b;
 }
+
 #delete {
     background-color: #e7292e;
 }
@@ -38,21 +41,22 @@
     position: relative;
     display: inline-block;
     font-weight: bold;
-    font-size:36rpx;
-    line-height:36rpx;
-    height:36rpx;
+    font-size: 36rpx;
+    line-height: 36rpx;
+    height: 36rpx;
 }
+
 /* 播放按钮 */
 .play {
     position: absolute;
-    top:50%;
+    top: 50%;
     transform: translateY(-50%);
-    right:-90rpx;
-    width:50rpx;
-    height:50rpx;
+    right: -90rpx;
+    width: 70rpx;
+    height: 70rpx;
 }
 
-.video-ctl{
+.video-ctl {
     width: 0;
     height: 0;
 }
@@ -62,9 +66,9 @@
     padding: 10rpx;
     margin: 20rpx 0 50rpx 0;
     /* width:240rpx; */
-    width:600rpx;
+    width: 600rpx;
     max-height: 150rpx;
-    font-size:32rpx;
+    font-size: 32rpx;
     word-wrap: break-word;
     white-space: pre-line;
 
@@ -73,25 +77,26 @@
 
 /* 评论数 */
 .comment {
-    color : #00b26a;
-    font-size:30rpx;
+    color: #00b26a;
+    font-size: 30rpx;
 }
 
 /* 老师评论数 */
 .teacher-comment {
     margin-left: 100rpx;
-    color : #007dcb;
-    font-size:30rpx;
+    color: #007dcb;
+    font-size: 30rpx;
 }
 
 /* 日期 */
 .time {
     position: absolute;
-    right : 0;
-    top :50%;
+    right: 0;
+    top: 50%;
     transform: translateY(-50%);
-    
+
 }
+
 .card-bottom {
     position: relative;
     display: flex;

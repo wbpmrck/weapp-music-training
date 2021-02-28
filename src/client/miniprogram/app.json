@@ -33,11 +33,12 @@
     ]
   },
   "window": {
-    "enablePullDownRefresh":true,
+    "enablePullDownRefresh": true,
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "易回课",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

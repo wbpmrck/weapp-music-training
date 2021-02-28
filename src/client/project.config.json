@@ -12,6 +12,8 @@
 	"projectname": "music-training",
 	"libVersion": "2.3.0",
 	"compileType": "miniprogram",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
